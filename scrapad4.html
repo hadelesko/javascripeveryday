@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button>The time is?</button>
+
+<p id="demo"></p>
+
+<script>
+function pairs(inputarray,  given_sum_value){
+    //var inputarray=[10,5,-1000,50,27,15,10];
+    
+    var given_sum_value= 20;
+    var i=0;
+    var output_array=[];
+    for(i=0; i<inputarray.length-1; i++){
+        var actuel_element = inputarray[i];  // indexed element
+        //the complement or the rest or the value to be added 
+        //to the actuel_elemen so that we can get the given_sum_value 
+        var complement_val  = given_sum_value-actuel_element;
+
+        //inputarray.pop(inputarray[i]); 
+        //inputarray.pop(actuel_element); 
+        var remaining_array = inputarray.filter(function(actuel_element, value){
+            return value != actuel_element;
+        });
+
+        //condition ***i***: if the the complement can be found in the rest of the array
+        
+        if((complement_val in remaining_array)==true){
+            
+            // inserting the element to the output_array
+            output_array.push(actuel_element);  
+            output_array.push(complement_val);
+            document.getElementById("demo").innerHTML=output_array;
+            break;
+            //return output_array; 
+  }
+
+}}
+var el=document.getElementById("demo");
+el.innerHTML=pairs([10,5,-1000,50,27,15,10] , 20)
+</script>
+
+</body>
+</html>
