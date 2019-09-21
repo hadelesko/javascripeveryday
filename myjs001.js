@@ -93,28 +93,31 @@ function wespairs(inputarray){
 }
 
 
-function wesspairs(inputarray){
+function wesspaars(inputarray){
+    //var inpty=[12, 5, -1000, 50, 1020, 27, 8, 15, 10];
+    //var inpt=[12, 5, -1000, 50, 1020, 27, 15, 10, 8]; 
+    //inputarray= [ 10, 5, -1000, 50, 27, 15, 10 ];
     var desired_sum_value=20;
     var complementar_array=[];
     var output_array=[];
-    for(let i=0; i<inputarray.length-1; i++){
+    for(let i=0; i<inputarray.length; i++){
         complementar_array[i]=desired_sum_value-inputarray[i];
-      };
+        var remaining_array = inputarray.filter(function(value){
+            return value != inputarray[i];
+        });
 
-    //for(let j=0;j<inputarray.length-1; j++)
-    while(j<inputarray.length && (complementar_array[i] ===inputarray[i]) && ((complementar_array[i] in inputarray)===false)){
+        if((complementar_array[i]!=inputarray[i]) 
+        && ((complementar_array[i] in remaining_array)==true)){
 
-                output_array=[inputarray[i],complementar_array[i]]; 
-
-            }
-         
-    }
-    return output_array;
-}}}
+                    output_array=[inputarray[i],complementar_array[i]]; 
+                    return output_array;
+                }          
+        }
+}
 
 
 
-function wesspairs(inputarray){
+function wesspaiirs(inputarray){
     //var inpt=[12, 5, -1000, 50, 1020, 27, 15, 10, 8]; 
     //inputarray= [ 10, 5, -1000, 50, 27, 15, 10 ];
     var desired_sum_value=20;
@@ -133,7 +136,7 @@ function wesspairs(inputarray){
 
         if((complementar_array[j] in remaining_array)===false){
             //continue;
-                output_array===output_array; // No update   
+                output_array=output_array; // No update   
             }
          else{
              //if((complementar_array[i] in remaining_array)===true) {
@@ -167,8 +170,28 @@ function wessjspairs(inputarray){
         var remaining_array = inputarray.filter(function(value){
             return value != inputarray[j];
         });
+        var complement_val= desired_sum_value - inputarray[j]
+        // check if the remaining array contains the required complement_value
+        var arraycontains_value= (function(complement_val){
+    
+            for(let k=0;k<remaining_array.length; k++){
+             if(remaining_array[k]-complement_val==0){
+                 //decision_array.push[0];
+                 break;
+                }
+            return true;        
+        }
+        }(complement_val));
 
-        if((complementar_array[j] in remaining_array)==false){
+        if(arraycontains_value==true){
+            output_array=[inputarray[j],complementar_array[j]];
+        }else {
+            output_array=[];
+        }
+        return output_array;
+    }
+}
+/*         if((complementar_array[j] in remaining_array)==false){
             //continue;
                 output_array= output_array; // No update   
             }
@@ -177,10 +200,11 @@ function wessjspairs(inputarray){
              
             output_array=[inputarray[j],complementar_array[j]];
             break; //stop the loop after the first output.length==2 
-         }    
-    }
-    return output_array;
-}
+         } 
+        }    
+    }*/
+    
+
 
 
 /*var i=0; var n= (function(){ var booly; while(i<inpt.length-1){if(inpt[i]===27){return booly= true;} else{return booly=false;}; i+=1; } }());
@@ -198,12 +222,180 @@ var array_residus= (function(){
         }; 
     return decision_array;
 }}())
-
-var array_residus= (function(){
-    decision_array=[];
-    for(let k=0;k<remaining_array.length-1; k++){
+//================================================================
+var arraycontains_value= (function(complement_val){
+    
+    for(let k=0;k<remaining_array.length; k++){
      if(remaining_array[k]-complement_val==0){
-         decision_array.push[0];
-        }; 
-    return decision_array;
-}}())
+         //decision_array.push[0];
+         break;
+        }
+    return true;        
+}
+//return decision_array.length>=1;
+}(complement_val))
+//=================================================================
+
+var arraycontains_complement= (function(){
+    var decision_array=[];
+    var complement_val=8;
+    for(var k=0;k<remaining_array.length; k++){
+     if(remaining_array[k]-complement_val==0){
+         //decision_array.push[0]; 
+         break;
+    }
+    return "at the position " +k       
+}
+ 
+}());
+
+
+
+
+function wessjspair(inputarray){
+    //var inpt=[12, 5, -1000, 50, 1020, 27, 15, 10, 8]; 
+    //inputarray= [ 10, 5, -1000, 50, 27, 15, 10 ];
+    var desired_sum_value=20;
+    //var complementar_array=[];
+    var output_array=[];
+    /*we create an array with the same length as the inputarray containing the 
+    remaining values for each element to get the given sum (here 20)*/
+    var complementar_array=(function complementar(given_array, desired_sum_value){
+        var coarr=[];
+            for(var i=0; i<given_array.length; i++){
+                coarr[i]=desired_sum_value-inputarray[i];
+            }; return coarr;
+    }(inputarray, desired_sum_value)); //complementar_arr funtion is created and directly invoked
+
+    for(var j=0;j<inputarray.length; j++){
+
+        var remaining_array = inputarray.filter(function(value){
+            return value != inputarray[j];
+        });
+        var complement_val= desired_sum_value - inputarray[j]
+        // check if the remaining array contains the required complement_value
+        var arraycontains_value= (function(complement_val){
+            var ispartof=false;
+            for(let k=0;k<remaining_array.length; k++){
+             if(remaining_array[k]-complement_val!=0){
+               continue;
+                }
+/*                 else{
+                   ispartof=true;
+                } */
+
+                ispartof=true;    
+            return ispartof;        
+        }
+        }(complement_val));
+        
+        if(arraycontains_value==true){
+            output_array=[inputarray[j],complementar_array[j]];
+        }else {
+            output_array=[];
+        }
+        return output_array;
+    }    
+}
+
+
+
+
+// ==============================================================================================================//
+// check if the an element is in an array
+
+function hasValue(arrayx, value){
+    for(let i=0; i<=arrayx.length; i++){
+        if(arrayx[i]==value){
+            return true;
+        }
+    }
+}
+
+//================================================================================================================//
+
+function countelement(arrayx, element){
+    count_element=0;
+    for(let i=0; i<arrayx.length; i++){
+        if(arrayx[i]!=element){ 
+            // we jump to arrayx[i+1]  if array[i+1] is NOT equal to the element with the "continue" statment
+            // continue   to jump over i+1 if the condition(arrayx[i]!=value) is true
+            continue;
+        } 
+        count_element++;
+    }
+    return count_element;
+}
+
+// Alternative vuncktion count specific element in an array
+function countelement(arrayx, element){
+    count=0;
+    for(let i=0; i<arrayx.length; i++){
+        if(arrayx[i]==element){// we count if arrayx[i]== element 
+            count++;     
+        }  
+    }
+    //return the value of the count element function
+    return count; 
+}
+
+//======================================================================================================================
+function arrayElementfrequency(arrayx){
+    //var elementcounter=1;
+    var frequencyArray=[];
+    for(var i=0; i<arrayx.length; i++){
+        var element=arrayx[i];
+        var elementcounter=1;
+        
+        for(var j=0; j<arrayx.length; j++){
+            if((j==i)&&(arrayx[j]!=arrayx[i])||(j!=i)&&(arrayx[j]!=arrayx[i])){
+                continue;
+            }
+            elementcounter+=1;
+        }
+        // How to eliminate the duplicate?
+        //if((("{"+arrayx[i]+" : "+elementcounter+"}") in frequencyArray)==false){
+            frequencyArray.push("{"+arrayx[i]+" : "+elementcounter+"}");
+        //}               
+    }
+    return frequencyArray;
+}
+
+//=====================================================================================================================
+
+//====================================Verifier s'il y a duplicate dans l' array========================================
+function elementHasDuplicate(arrayx, element){
+    var decision_value=false;
+    if (countelement(arrayx, elemrnt)>=2){
+        decision_value=true;
+    } 
+    return decision_value
+}
+
+
+
+
+
+//=====================================================================================================================
+//This code will exit the loop after the first iteration in a for of loop:
+
+const objc = [{ name: 1 }, { name: 2 }, { name: 3 }];
+for (const iterator of objc) {
+  if (iterator.name == 2) {
+    return;
+  }
+  console.log(iterator.name);// 1
+}
+
+//the below code will jump on the condition and continue on a for of loop:
+
+const objc = [{ name: 1 }, { name: 2 }, { name: 3 }];
+
+for (const iterator of objc) {
+  if (iterator.name == 2) {
+    continue;
+  }
+  console.log(iterator.name); // 1  , 3
+}
+//=====================================================================================================================
+
